@@ -9,7 +9,7 @@ Function.prototype.myapply = function(context, args) {
   const fn = Symbol();
   context[fn] = this;
   args = Array.isArray(args) ? args : []; // 注意判断下args给个默认值
-  const res = context[fn](args);
+  const res = context[fn](...args);
   delete context[fn];
   return res;
 }

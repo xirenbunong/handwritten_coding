@@ -9,7 +9,7 @@ Function.prototype.mycall = function(context, ...args) {
 
   context = context || window; // 如果第一个参数没传，默认指向window
 
-  const fn = Symbol(); // 创建一个独一无二的属性，避免和context原有属性冲突
+  const fn = Symbol(); // 创建一个独一无二的属性，避免和context原有属性冲突。Symbol创建私有变量；不会被常规的方法遍历到
 
   context[fn] = this;
   const res = context[fn](...args);

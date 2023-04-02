@@ -138,4 +138,23 @@ class MyPromise {
       }
     })
   }
+
+  // Promise.any 只要传入的 promise 有一个是 fullfilled 则立即 resolve 出去，否则将所有 reject 结果收集起来并返回
+  static any(promiseArr) {
+    const errs = [];
+    return new MyPromise((resolve, reject) => {
+      promiseArr.forEach((p, i) => {
+        //Promise.resolve(p)用于处理传入值不为Promise的情况
+        MyPromise.resolve(p).then(val => {
+          resolve(val);
+        },
+        err => {
+          errs.push(err);
+          if(promiseArr.length === i) {
+            reject(new Error(errs));
+          }
+        })
+      });
+    })
+  }
 }
