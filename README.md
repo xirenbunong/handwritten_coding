@@ -16,6 +16,8 @@
 - instanceof
 - new操作符
 - 数组原型方法
+- 寄生组合式继承
+- Class 继承
 - 大文件上传
 - ajax并发请求
 - Vue2 响应式
