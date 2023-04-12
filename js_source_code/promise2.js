@@ -108,14 +108,12 @@ class MyPromise {
   }
 
   static all(promiseArr) {
-    let index = 0;
     return new MyPromise((resolve, reject) => {
       promiseArr.forEach((p, i) => {
         //Promise.resolve(p)用于处理传入值不为Promise的情况
         MyPromise.resolve(p).then(val => {
-          index++;
           result[i] = val;
-          if(promiseArr.length === index) {
+          if(promiseArr.length === i) {
             resolve(resolve);
           }
         },
