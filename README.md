@@ -8,6 +8,7 @@
 - EventEmitter
 - 防抖
 - 节流
+- setTimeout实现setInterval
 - 深拷贝
 - 数组去重、扁平化
 - 洗牌算法
