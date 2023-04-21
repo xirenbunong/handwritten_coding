@@ -1,3 +1,6 @@
+const isObj = (target) => {
+  return (typeof target === 'object' || typeof target === 'function') && target !== null;
+}
 function reactive(target) {
   if(typeof target !== 'object' || target === null) {
     return target;
@@ -9,8 +12,10 @@ function reactive(target) {
       // 因此，也更加强大。它强就强在第三个参数receiver上，我们可以使用receiver指定访问器的上下文this.
       // 在实际调用对象和被代理对象不同时，修改访问器的上下文this以保证上下文不会丢失。
       const result = Reflect.get(target, key, receiver);
-      // 深度监听
-      return reactive(result);
+      
+      // 深度监听，递归
+      // 在 getter 中去递归响应式，这样的好处是真正访问到的内部对象才会变成响应式，而不是无脑递归
+      return isObj(result) ? reactive(result) : result;
     },
     set(target, key, newVal, receiver) {
       // 值没变就不 set 了
