@@ -10,3 +10,19 @@ function myInstanceof(target, origin) {
     return false;
   }
 }
+
+// Object.prototype.a = () => {
+//   console.log('a');
+// }
+// Function.prototype.b = () => {
+//   console.log('b');
+// }
+
+// function F(){}
+
+// var f = new F();
+
+// F.a(); // a
+// F.b(); // b
+// f.a(); // a
+// f.b(); // b is not a function
