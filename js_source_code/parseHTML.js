@@ -1,5 +1,7 @@
 // 编译一段 HTML
 function parseHTML(html) {
+  // <([a-zA-Z0-9-]+) 表示匹配 < 字符后面紧接着的标签名，标签名可以由大小写字母、数字和短横线组成
+  // [^>]* 表示匹配任意不是 > 的字符
   const tagStartRegex = /^<([a-zA-Z0-9-]+)\b[^>]*>/; // 匹配起始标签
   const tagEndRegex = /^<\/([a-zA-Z0-9-]+)[^>]*>/; // 匹配结束标签
   const attrRegex = /\b([a-zA-Z0-9-]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|(\S+))/g; // 匹配标签属性
@@ -9,8 +11,11 @@ function parseHTML(html) {
   const stack = [root]; // 创建节点栈，根节点入栈
 
   while (html.length > 0) {
+    // 举例：'<p class="name">111</p>'
+    // ['<p class="name">', 'p', index: 0, input: '<p class="name">111</p>', groups: undefined]
     const tagStartMatch = html.match(tagStartRegex);
     if (tagStartMatch) {
+      // tagName：p
       const tagName = tagStartMatch[1];
       const attrs = {};
       let attrMatch;
