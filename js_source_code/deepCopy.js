@@ -19,7 +19,7 @@ function deepCopy(target, map = new Map()) {
 
     const newObj = Array.isArray(target) ? [] : {};
     for (const key in target) {
-      if (Object.hasOwnProperty.call(object, key)) {
+      if (Object.hasOwnProperty.call(target, key)) {
         newObj[key] = deepCopy(target[key], map);
       }
     }
